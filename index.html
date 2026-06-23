@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Comparison Slider</title>
+<style>
+body{margin:0;background:#111;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family:Arial,sans-serif}
+.container{position:relative;width:90vw;max-width:1200px;overflow:hidden;border-radius:12px}
+video{width:100%;display:block}
+.after-wrapper{position:absolute;top:0;left:0;width:50%;height:100%;overflow:hidden}
+.slider-line{position:absolute;top:0;left:50%;width:4px;height:100%;background:white;transform:translateX(-50%)}
+.slider-handle{position:absolute;top:50%;left:50%;width:40px;height:40px;border-radius:50%;background:white;transform:translate(-50%,-50%)}
+input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize}
+.label{position:absolute;top:15px;padding:8px 12px;background:rgba(0,0,0,.6);color:white;border-radius:6px}
+.before-label{left:15px}.after-label{right:15px}
+</style>
+</head>
+<body>
+<div class="container">
+<video id="before" autoplay muted loop playsinline><source src="before.mp4" type="video/mp4"></video>
+<div class="after-wrapper" id="afterWrapper">
+<video id="after" autoplay muted loop playsinline><source src="after.mp4" type="video/mp4"></video>
+</div>
+<div class="label before-label">Before</div>
+<div class="label after-label">After</div>
+<div class="slider-line" id="sliderLine"></div>
+<div class="slider-handle" id="sliderHandle"></div>
+<input type="range" min="0" max="100" value="50" id="slider">
+</div>
+<script>
+const slider=document.getElementById('slider');
+const wrapper=document.getElementById('afterWrapper');
+const line=document.getElementById('sliderLine');
+const handle=document.getElementById('sliderHandle');
+slider.addEventListener('input',()=>{
+ const v=slider.value+'%';
+ wrapper.style.width=v; line.style.left=v; handle.style.left=v;
+});
+</script>
+</body></html>
