@@ -56,7 +56,7 @@ body{
     position:absolute;
     top:0;
     left:50%;
-    width:4px;
+    width:3px;
     height:100%;
     background:white;
     transform:translateX(-50%);
@@ -68,12 +68,12 @@ body{
     position:absolute;
     top:50%;
     left:50%;
-    width:48px;
-    height:48px;
+    width:42px;
+    height:42px;
     border-radius:50%;
     background:white;
     transform:translate(-50%,-50%);
-    box-shadow:0 0 20px rgba(0,0,0,.5);
+    box-shadow:0 0 15px rgba(0,0,0,.4);
     pointer-events:none;
     z-index:21;
 }
@@ -81,21 +81,22 @@ body{
 .before-label,
 .after-label{
     position:absolute;
-    top:20px;
-    padding:10px 14px;
-    border-radius:8px;
-    background:rgba(0,0,0,.65);
+    top:10px;
+    padding:3px 7px;
+    border-radius:5px;
+    background:rgba(0,0,0,.45);
     color:white;
-    font-size:14px;
+    font-size:9px;
+    font-weight:500;
     z-index:30;
 }
 
 .before-label{
-    left:20px;
+    left:10px;
 }
 
 .after-label{
-    right:20px;
+    right:10px;
 }
 
 .footer{
@@ -105,10 +106,10 @@ body{
     transform:translateX(-50%);
     text-align:center;
     color:white;
-    font-size:14px;
-    background:rgba(0,0,0,.65);
-    padding:10px 18px;
-    border-radius:12px;
+    font-size:12px;
+    background:rgba(0,0,0,.55);
+    padding:8px 14px;
+    border-radius:10px;
     z-index:1000;
 }
 
@@ -152,8 +153,8 @@ body{
 
     </div>
 
-    <div class="before-label">Before</div>
-    <div class="after-label">After</div>
+    <div class="before-label">Orig</div>
+    <div class="after-label">Final</div>
 
     <div class="slider-line" id="line"></div>
     <div class="slider-handle" id="handle"></div>
