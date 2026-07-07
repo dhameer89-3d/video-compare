@@ -11,12 +11,19 @@
 
 <style>
 
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+
+html{
+
+    scroll-behavior:smooth;
+
+}
 
 
 body{
@@ -33,13 +40,71 @@ body{
 
     align-items:center;
 
-    gap:40px;
+    gap:120px;
 
-    padding:40px 0 90px;
+    padding:90px 0 90px;
 
     font-family:Arial,sans-serif;
 
 }
+
+
+
+
+/* TOP MENU */
+
+
+.menu{
+
+    position:fixed;
+
+    top:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:2000;
+
+
+    display:flex;
+
+    gap:18px;
+
+
+    background:rgba(0,0,0,.55);
+
+    padding:10px 18px;
+
+    border-radius:20px;
+
+    backdrop-filter:blur(8px);
+
+}
+
+
+
+.menu a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
+}
+
+
+
+.menu a:hover{
+
+    text-decoration:underline;
+
+}
+
+
 
 
 
@@ -55,6 +120,9 @@ body{
     overflow:hidden;
 
     border-radius:12px;
+
+
+    scroll-margin-top:120px;
 
 }
 
@@ -72,6 +140,7 @@ body{
     height:auto;
 
 }
+
 
 
 
@@ -108,6 +177,8 @@ body{
 
 
 
+
+
 .slider-line{
 
     position:absolute;
@@ -129,6 +200,8 @@ body{
     z-index:20;
 
 }
+
+
 
 
 
@@ -162,6 +235,8 @@ body{
 
 
 
+
+
 .before-label,
 .after-label{
 
@@ -188,6 +263,7 @@ body{
 
 
 
+
 .before-label{
 
     left:11px;
@@ -201,6 +277,9 @@ body{
     right:11px;
 
 }
+
+
+
 
 
 
@@ -242,7 +321,6 @@ body{
 }
 
 
-
 .footer a:hover{
 
     text-decoration:underline;
@@ -258,25 +336,50 @@ body{
 
 
 
+
 <body>
 
 
 
+<!-- ANCHOR MENU -->
+
+<div class="menu">
+
+    <a href="#compare1">
+        DETAILING 01
+    </a>
 
 
-<!-- VIDEO 1 -->
+    <a href="#compare2">
+        DETAILING 02
+    </a>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- VIDEO 01 -->
 
 
 <div class="container" id="compare1">
 
 
-    <video id="beforeVideo1"
+    <video 
+    id="beforeVideo1"
     class="base-video"
     autoplay muted loop playsinline>
 
+
         <source src="before.mp4" type="video/mp4">
 
+
     </video>
+
 
 
 
@@ -284,16 +387,21 @@ body{
     <div class="overlay" id="overlay1">
 
 
-        <video id="afterVideo1"
+        <video
+        id="afterVideo1"
         class="overlay-video"
         autoplay muted loop playsinline>
 
+
             <source src="after.mp4" type="video/mp4">
+
 
         </video>
 
 
     </div>
+
+
 
 
 
@@ -305,6 +413,8 @@ body{
     <div class="after-label">
         DETAILING LV 2
     </div>
+
+
 
 
     <div class="slider-line" id="line1"></div>
@@ -313,6 +423,7 @@ body{
 
 
 
+
 </div>
 
 
@@ -321,19 +432,26 @@ body{
 
 
 
-<!-- VIDEO 2 -->
+
+
+<!-- VIDEO 02 -->
+
 
 
 <div class="container" id="compare2">
 
 
-    <video id="beforeVideo2"
+    <video 
+    id="beforeVideo2"
     class="base-video"
     autoplay muted loop playsinline>
 
+
         <source src="before2.mp4" type="video/mp4">
 
+
     </video>
+
 
 
 
@@ -341,16 +459,21 @@ body{
     <div class="overlay" id="overlay2">
 
 
-        <video id="afterVideo2"
+        <video
+        id="afterVideo2"
         class="overlay-video"
         autoplay muted loop playsinline>
 
+
             <source src="after2.mp4" type="video/mp4">
+
 
         </video>
 
 
     </div>
+
+
 
 
 
@@ -365,12 +488,18 @@ body{
 
 
 
+
     <div class="slider-line" id="line2"></div>
 
     <div class="slider-handle" id="handle2"></div>
 
 
+
+
 </div>
+
+
+
 
 
 
@@ -387,7 +516,9 @@ body{
         dhameer89@gmail.com
     </a>
 
+
 </div>
+
 
 
 
@@ -416,7 +547,6 @@ document.getElementById("line"+num);
 
 const handle =
 document.getElementById("handle"+num);
-
 
 
 const before =
@@ -449,15 +579,14 @@ function updateSlider(clientX){
     Math.max(0,Math.min(x,rect.width));
 
 
-
     const percent =
     (x/rect.width)*100;
 
 
 
+
     overlay.style.clipPath =
     `inset(0 ${100-percent}% 0 0)`;
-
 
 
     line.style.left =
@@ -474,9 +603,7 @@ function updateSlider(clientX){
 
 
 
-compare.addEventListener(
-"mousedown",
-e=>{
+compare.addEventListener("mousedown",e=>{
 
 dragging=true;
 
@@ -487,10 +614,8 @@ updateSlider(e.clientX);
 
 
 
+window.addEventListener("mousemove",e=>{
 
-window.addEventListener(
-"mousemove",
-e=>{
 
 if(dragging){
 
@@ -498,14 +623,13 @@ updateSlider(e.clientX);
 
 }
 
+
 });
 
 
 
 
-window.addEventListener(
-"mouseup",
-()=>{
+window.addEventListener("mouseup",()=>{
 
 dragging=false;
 
@@ -515,14 +639,13 @@ dragging=false;
 
 
 
+compare.addEventListener("touchmove",e=>{
 
-compare.addEventListener(
-"touchmove",
-e=>{
 
 updateSlider(
 e.touches[0].clientX
 );
+
 
 });
 
@@ -536,12 +659,14 @@ setInterval(()=>{
 
 
 if(
+
 Math.abs(
 before.currentTime-after.currentTime
 )>0.05
+
 ){
 
-after.currentTime=
+after.currentTime =
 before.currentTime;
 
 }
@@ -553,6 +678,7 @@ before.currentTime;
 
 
 }
+
 
 
 
@@ -569,6 +695,5 @@ createSlider(2);
 
 
 </body>
-
 
 </html>
