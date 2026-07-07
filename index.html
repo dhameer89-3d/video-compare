@@ -1,231 +1,218 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dhameer Abbas | Video Comparison</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    background:#000;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:Arial,sans-serif;
-}
-
-.container{
-    position:relative;
-    width:90vw;
-    max-width:1400px;
-    overflow:hidden;
-    border-radius:12px;
-}
-
-.base-video,
-.overlay-video{
-    display:block;
-    width:100%;
-    height:auto;
-}
-
-.overlay{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    clip-path: inset(0 50% 0 0);
-}
-
-.overlay video{
-    width:100%;
-    height:auto;
-}
-
-.slider-line{
-    position:absolute;
-    top:0;
-    left:50%;
-    width:3px;
-    height:100%;
-    background:white;
-    transform:translateX(-50%);
-    pointer-events:none;
-    z-index:20;
-}
-
-.slider-handle{
-    position:absolute;
-    top:50%;
-    left:50%;
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:white;
-    transform:translate(-50%,-50%);
-    box-shadow:0 0 15px rgba(0,0,0,.4);
-    pointer-events:none;
-    z-index:21;
-}
-
-.before-label,
-.after-label{
-    position:absolute;
-    top:10px;
-    padding:3px 7px;
-    border-radius:5px;
-    background:rgba(0,0,0,.45);
-    color:white;
-    font-size:11px;
-    font-weight:500;
-    z-index:30;
-}
-
-.before-label{
-    left:11px;
-}
-
-.after-label{
-    right:11px;
-}
-
-.footer{
-    position:fixed;
-    bottom:15px;
-    left:50%;
-    transform:translateX(-50%);
-    text-align:center;
-    color:white;
-    font-size:12px;
-    background:rgba(0,0,0,.55);
-    padding:8px 14px;
-    border-radius:10px;
-    z-index:1000;
-}
-
-.footer a{
-    color:white;
-    text-decoration:none;
-}
-
-.footer a:hover{
-    text-decoration:underline;
-}
-
-</style>
-</head>
-
 <body>
 
-<div class="container" id="compare">
 
-    <video
-        id="beforeVideo"
-        class="base-video"
-        autoplay
-        muted
-        loop
-        playsinline>
+<div class="container compare">
+
+    <video class="base-video beforeVideo"
+        autoplay muted loop playsinline>
         <source src="before.mp4" type="video/mp4">
     </video>
 
-    <div class="overlay" id="overlay">
 
-        <video
-            id="afterVideo"
-            class="overlay-video"
-            autoplay
-            muted
-            loop
-            playsinline>
+    <div class="overlay">
+
+        <video class="overlay-video afterVideo"
+            autoplay muted loop playsinline>
             <source src="after.mp4" type="video/mp4">
         </video>
 
     </div>
 
+
     <div class="before-label">DETAILING LV 1</div>
     <div class="after-label">DETAILING LV 2</div>
 
-    <div class="slider-line" id="line"></div>
-    <div class="slider-handle" id="handle"></div>
+    <div class="slider-line"></div>
+    <div class="slider-handle"></div>
 
 </div>
+
+
+
+
+<div class="container compare">
+
+    <video class="base-video beforeVideo"
+        autoplay muted loop playsinline>
+        <source src="before2.mp4" type="video/mp4">
+    </video>
+
+
+    <div class="overlay">
+
+        <video class="overlay-video afterVideo"
+            autoplay muted loop playsinline>
+            <source src="after2.mp4" type="video/mp4">
+        </video>
+
+    </div>
+
+
+    <div class="before-label">DETAILING LV 1</div>
+    <div class="after-label">DETAILING LV 2</div>
+
+    <div class="slider-line"></div>
+    <div class="slider-handle"></div>
+
+</div>
+
+
+
 
 <div class="footer">
+
     Dhameer Abbas • 3D Artist
+
     <br>
-    <a href="mailto:dhameer89@gmail.com">dhameer89@gmail.com</a>
+
+    <a href="mailto:dhameer89@gmail.com">
+        dhameer89@gmail.com
+    </a>
+
 </div>
+
+
+
 
 <script>
 
-const compare = document.getElementById('compare');
-const overlay = document.getElementById('overlay');
-const line = document.getElementById('line');
-const handle = document.getElementById('handle');
 
-let dragging = false;
+document.querySelectorAll(".compare").forEach(compare=>{
+
+
+const overlay =
+compare.querySelector('.overlay');
+
+
+const line =
+compare.querySelector('.slider-line');
+
+
+const handle =
+compare.querySelector('.slider-handle');
+
+
+const before =
+compare.querySelector('.beforeVideo');
+
+
+const after =
+compare.querySelector('.afterVideo');
+
+
+
+let dragging=false;
+
+
 
 function updateSlider(clientX){
 
-    const rect = compare.getBoundingClientRect();
 
-    let x = clientX - rect.left;
+    const rect =
+    compare.getBoundingClientRect();
 
-    x = Math.max(0, Math.min(x, rect.width));
 
-    const percent = (x / rect.width) * 100;
+    let x =
+    clientX - rect.left;
+
+
+    x =
+    Math.max(0,Math.min(x,rect.width));
+
+
+    const percent =
+    (x/rect.width)*100;
+
+
 
     overlay.style.clipPath =
-        `inset(0 ${100-percent}% 0 0)`;
+    `inset(0 ${100-percent}% 0 0)`;
 
-    line.style.left = percent + '%';
-    handle.style.left = percent + '%';
+
+    line.style.left =
+    percent+'%';
+
+
+    handle.style.left =
+    percent+'%';
+
 }
 
-compare.addEventListener('mousedown', e=>{
-    dragging = true;
+
+
+compare.addEventListener('mousedown',e=>{
+
+    dragging=true;
+
     updateSlider(e.clientX);
+
 });
 
-window.addEventListener('mousemove', e=>{
+
+
+window.addEventListener('mousemove',e=>{
+
+
     if(dragging){
+
         updateSlider(e.clientX);
+
     }
+
+
 });
 
-window.addEventListener('mouseup', ()=>{
-    dragging = false;
+
+
+window.addEventListener('mouseup',()=>{
+
+    dragging=false;
+
 });
 
-compare.addEventListener('touchstart', e=>{
+
+
+compare.addEventListener('touchstart',e=>{
+
     updateSlider(e.touches[0].clientX);
+
 });
 
-compare.addEventListener('touchmove', e=>{
+
+
+compare.addEventListener('touchmove',e=>{
+
     updateSlider(e.touches[0].clientX);
+
 });
 
-const before = document.getElementById('beforeVideo');
-const after = document.getElementById('afterVideo');
+
+
+
 
 setInterval(()=>{
-    if(Math.abs(before.currentTime - after.currentTime) > 0.05){
-        after.currentTime = before.currentTime;
+
+
+    if(
+    Math.abs(
+    before.currentTime-after.currentTime
+    )>0.05
+    ){
+
+        after.currentTime=
+        before.currentTime;
+
     }
+
+
 },100);
+
+
+
+});
+
 
 </script>
 
+
 </body>
-</html>
